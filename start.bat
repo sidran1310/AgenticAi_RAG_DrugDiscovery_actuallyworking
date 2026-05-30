@@ -2,7 +2,10 @@
 setlocal enabledelayedexpansion
 
 :: Ensure Node.js/npm are on PATH (user PATH often missing in non-interactive scripts)
-set PATH=%APPDATA%\npm;%ProgramFiles%\nodejs;%ProgramFiles(x86)%\nodejs;%PATH%
+set PATH=%APPDATA%\npm;%ProgramFiles%\nodejs;%ProgramFiles(x86)%\nodejs;%LOCALAPPDATA%\Programs\nodejs;%PATH%
+:: nvm-windows support
+if defined NVM_SYMLINK set PATH=%NVM_SYMLINK%;%PATH%
+if defined NVM_HOME set PATH=%NVM_HOME%;%PATH%
 
 set ROOT=%~dp0
 set BACKEND=%ROOT%app\backend
