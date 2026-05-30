@@ -1,6 +1,9 @@
 @echo off
 setlocal enabledelayedexpansion
 
+:: Ensure Node.js/npm are on PATH (user PATH often missing in non-interactive scripts)
+set PATH=%APPDATA%\npm;%ProgramFiles%\nodejs;%ProgramFiles(x86)%\nodejs;%PATH%
+
 set ROOT=%~dp0
 set BACKEND=%ROOT%app\backend
 set FRONTEND=%ROOT%app\frontend
