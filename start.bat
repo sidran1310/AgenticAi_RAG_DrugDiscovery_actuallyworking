@@ -81,7 +81,7 @@ if !GROQ_REAL!==0 (
     set /p GROQ_INPUT="  Enter GROQ_API_KEY (or press Enter to skip): "
     if not "!GROQ_INPUT!"=="" (
         set TMPFILE=%TEMP%\env_tmp_%RANDOM%.txt
-        findstr /v "^GROQ_API_KEY=" ".env" > "!TMPFILE!"
+        %SystemRoot%\System32\findstr.exe /v "^GROQ_API_KEY=" ".env" > "!TMPFILE!"
         echo GROQ_API_KEY=!GROQ_INPUT!>> "!TMPFILE!"
         move /y "!TMPFILE!" ".env" >nul
         echo   Saved.
@@ -95,7 +95,7 @@ if !GEMINI_REAL!==0 (
     set /p GEMINI_INPUT="  Enter GEMINI_API_KEY (or press Enter to skip): "
     if not "!GEMINI_INPUT!"=="" (
         set TMPFILE=%TEMP%\env_tmp_%RANDOM%.txt
-        findstr /v "^GEMINI_API_KEY=" ".env" > "!TMPFILE!"
+        %SystemRoot%\System32\findstr.exe /v "^GEMINI_API_KEY=" ".env" > "!TMPFILE!"
         echo GEMINI_API_KEY=!GEMINI_INPUT!>> "!TMPFILE!"
         move /y "!TMPFILE!" ".env" >nul
         echo   Saved.
@@ -113,15 +113,23 @@ echo.
 cd /d "%FRONTEND%"
 
 echo [4/4] Setting up frontend...
+where node >nul 2>&1
+if errorlevel 1 (
+    echo.
+    echo WARNING: Node.js not found. Install Node.js 18+ from https://nodejs.org
+    echo          Frontend will not start. Open http://localhost:5001 for API only.
+    echo.
+    goto :open_browser
+)
+
 if not exist "node_modules" (
     echo       Installing Node dependencies (first run only)...
     npm install
     if errorlevel 1 (
         echo.
-        echo ERROR: npm install failed.
-        echo Install Node.js 18+ from https://nodejs.org
-        pause
-        exit /b 1
+        echo WARNING: npm install failed. Frontend may not start.
+        echo.
+        goto :open_browser
     )
     echo       Done.
 )
@@ -131,6 +139,7 @@ start "Drug Discovery - Frontend" cmd /k "cd /d "%FRONTEND%" && echo Frontend st
 echo       Frontend window opened.
 echo.
 
+:open_browser
 :: ── Wait then open browser ─────────────────────────────────────────────────
 echo Waiting for servers to initialise...
 timeout /t 6 /nobreak >nul
