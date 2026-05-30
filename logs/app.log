@@ -1,0 +1,12 @@
+2026-05-10 00:31:22,437 - app - INFO - Logging configured with level: INFO
+2026-05-10 00:31:46,533 - app - INFO - Logging configured with level: INFO
+2026-05-10 00:33:19,774 - middleware - INFO - Request: GET /api/config from 127.0.0.1
+2026-05-10 00:33:19,776 - middleware - INFO - Response: 200 in 0.001s
+2026-05-10 00:36:18,372 - middleware - INFO - Request: GET /api/config from 127.0.0.1
+2026-05-10 00:36:18,374 - middleware - INFO - Response: 200 in 0.002s
+2026-05-10 00:36:30,095 - middleware - INFO - Request: GET /api/config from 127.0.0.1
+2026-05-10 00:36:30,095 - middleware - INFO - Response: 200 in 0.000s
+2026-05-10 00:56:18,641 - middleware - INFO - Request: GET /api/config from 127.0.0.1
+2026-05-10 00:56:18,641 - middleware - INFO - Response: 200 in 0.001s
+2026-05-10 00:57:01,237 - middleware - INFO - Request: GET /api/config from 127.0.0.1
+2026-05-10 00:57:01,237 - middleware - INFO - Response: 200 in 0.000s

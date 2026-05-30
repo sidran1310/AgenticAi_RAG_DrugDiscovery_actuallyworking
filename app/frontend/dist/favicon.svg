@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- DNA Helix -->
+  <path d="M8 6 L12 10 L8 14 L12 18 L8 22 L12 26" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/>
+  <path d="M20 6 L16 10 L20 14 L16 18 L20 22 L16 26" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/>
+  <!-- Connecting lines -->
+  <line x1="10" y1="8" x2="18" y2="8" stroke="#10B981" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <line x1="10" y1="16" x2="18" y2="16" stroke="#10B981" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <line x1="10" y1="24" x2="18" y2="24" stroke="#10B981" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <!-- AI Chip/Circuit -->
+  <rect x="14" y="12" width="4" height="4" rx="1" fill="#8B5CF6" opacity="0.8"/>
+  <circle cx="16" cy="14" r="1" fill="white"/>
+</svg>
