@@ -116,10 +116,10 @@ echo [4/4] Setting up frontend...
 where node >nul 2>&1
 if errorlevel 1 (
     echo.
-    echo WARNING: Node.js not found. Install Node.js 18+ from https://nodejs.org
-    echo          Frontend will not start. Open http://localhost:5001 for API only.
-    echo.
-    goto :open_browser
+    echo ERROR: Node.js not found. Install Node.js 18+ from https://nodejs.org
+    echo        Frontend cannot start without Node.js.
+    pause
+    exit /b 1
 )
 
 if not exist "node_modules" (
@@ -127,23 +127,21 @@ if not exist "node_modules" (
     npm install
     if errorlevel 1 (
         echo.
-        echo WARNING: npm install failed. Frontend may not start.
-        echo.
-        goto :open_browser
+        echo ERROR: npm install failed. See errors above.
+        pause
+        exit /b 1
     )
     echo       Done.
 )
 
 echo       Starting frontend on http://localhost:5173 ...
-start "Drug Discovery - Frontend" cmd /k "cd /d "%FRONTEND%" && echo Frontend starting... && npm run dev"
-echo       Frontend window opened.
+echo       (browser will open in 8 seconds once Vite is ready)
 echo.
 
-:open_browser
-:: ── Wait then open browser ─────────────────────────────────────────────────
-echo Waiting for servers to initialise...
-timeout /t 6 /nobreak >nul
-start "" http://localhost:5173
+:: Open browser after 8s in background while npm run dev runs inline
+start /b cmd /c "timeout /t 8 /nobreak >nul && start "" http://localhost:5173"
+
+npm run dev
 
 echo.
 echo ============================================
